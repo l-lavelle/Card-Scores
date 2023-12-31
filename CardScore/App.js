@@ -1,17 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  PixelRatio,
-  ScrollView,
-} from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const fontScale = PixelRatio.getFontScale();
-const getFontSize = (size) => size / fontScale;
+import { styles } from "./AppStyle";
 
 function HomeScreen({ navigation }) {
   return (
@@ -22,14 +13,14 @@ function HomeScreen({ navigation }) {
           source={require("./assets/Score-Titan-Logo.png")}
         />
       </View>
-      <View style={styles.container}>
-        <Text style={styles.infoText}>
-          Welcome card players! Learn new card games and let us keep score.
-          Choose a game below to get started. Best of luck and may the odds be
-          ever in your favor.
-        </Text>
-        <View style={styles.gameContainer}>
-          <ScrollView>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.infoText}>
+            Welcome card players! Learn new card games and let us keep score.
+            Choose a game below to get started. Best of luck and may the odds be
+            ever in your favor.
+          </Text>
+          <View style={styles.gameContainer}>
             <View style={styles.individualGameContainer}>
               <Image
                 style={styles.gameImg}
@@ -37,9 +28,7 @@ function HomeScreen({ navigation }) {
               />
               <View style={styles.individualGame}>
                 <Text style={styles.individualGameInfoHeader}>Spades</Text>
-                <Text style={styles.individualGameInfo}>
-                  # of Players: 2 teams of 2 players
-                </Text>
+                <Text style={styles.individualGameInfo}># of Players: 4</Text>
                 <Text style={styles.individualGameInfo}>
                   Game: Win at least the number of tricks bid between you and
                   your partner
@@ -52,13 +41,10 @@ function HomeScreen({ navigation }) {
                 source={require("./assets/Spades.png")}
               />
               <View style={styles.individualGame}>
-                <Text style={styles.individualGameInfoHeader}>Spades</Text>
+                <Text style={styles.individualGameInfoHeader}>Euchre</Text>
+                <Text style={styles.individualGameInfo}># of Players: 4</Text>
                 <Text style={styles.individualGameInfo}>
-                  # of Players: 2 teams of 2 players
-                </Text>
-                <Text style={styles.individualGameInfo}>
-                  Game: Win at least the number of tricks bid between you and
-                  your partner
+                  Game: Teams of partners trying to get to 10 points to win
                 </Text>
               </View>
             </View>
@@ -68,41 +54,19 @@ function HomeScreen({ navigation }) {
                 source={require("./assets/Spades.png")}
               />
               <View style={styles.individualGame}>
-                <Text style={styles.individualGameInfoHeader}>Spades</Text>
+                <Text style={styles.individualGameInfoHeader}>Elevator</Text>
+                <Text style={styles.individualGameInfo}># of Players: 2-7</Text>
                 <Text style={styles.individualGameInfo}>
-                  # of Players: 2 teams of 2 players
-                </Text>
-                <Text style={styles.individualGameInfo}>
-                  Game: Win at least the number of tricks bid between you and
-                  your partner
+                  Game: Each player tries to get the exact number of tricks they
+                  call but someone always get screwed
                 </Text>
               </View>
             </View>
-            <View style={styles.individualGameContainer}>
-              <Image
-                style={styles.gameImg}
-                source={require("./assets/Spades.png")}
-              />
-              <View style={styles.individualGame}>
-                <Text style={styles.individualGameInfoHeader}>Spades</Text>
-                <Text style={styles.individualGameInfo}>
-                  # of Players: 2 teams of 2 players
-                </Text>
-                <Text style={styles.individualGameInfo}>
-                  Game: Win at least the number of tricks bid between you and
-                  your partner
-                </Text>
-              </View>
-            </View>
-            <View style={styles.individualGameContainer}>
-              <Text>Elevator</Text>
-            </View>
-          </ScrollView>
-          <Text onPress={() => navigation.navigate("Choose Players")}></Text>
-
-          <StatusBar style="auto" />
+            <Text onPress={() => navigation.navigate("Choose Players")}></Text>
+            <StatusBar style="auto" />
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -136,57 +100,6 @@ function App() {
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-  },
-  headerContainer: {
-    width: "100%",
-  },
-  headerImg: {
-    width: "100%",
-    height: 250,
-  },
-  header: {
-    backgroundColor: "black",
-    color: "white",
-  },
-  infoText: {
-    fontSize: getFontSize(17),
-    margin: "2%",
-  },
-  gameContainer: {
-    width: "100%",
-    flex: 1,
-  },
-  individualGameContainer: {
-    flexDirection: "row",
-    margin: "2%",
-    borderWidth: 5,
-    borderRadius: 25,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  individualGame: {
-    flex: 1,
-    margin: "2%",
-  },
-  individualGameInfoHeader: {
-    fontSize: getFontSize(20),
-    fontWeight: "bold",
-  },
-  individualGameInfo: {
-    fontSize: getFontSize(17),
-  },
-  gameImg: {
-    width: 100,
-    height: 120,
-    margin: "2%",
-  },
-});
 
 //Home Screen- welcome and choose game
 // When game loads choose players: depending on how many you can have
