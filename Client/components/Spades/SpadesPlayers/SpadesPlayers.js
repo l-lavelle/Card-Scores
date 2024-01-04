@@ -12,9 +12,10 @@ import {
 } from "react-native";
 import { styles } from "./SpadesPlayersStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export function SpadesPlayers(navigation) {
+export function SpadesPlayers({ navigation }) {
   const [teamData, onChangeTeamData] = React.useState({
     team1Name: "",
     player1: "",
@@ -33,8 +34,7 @@ export function SpadesPlayers(navigation) {
   const CreateTeams = () => {
     // console.log(teamData);
     storeData(teamData);
-    // () => navigation.navigate("Home");
-    getData();
+    navigation.navigate("Spades");
   };
 
   const storeData = async (value) => {
