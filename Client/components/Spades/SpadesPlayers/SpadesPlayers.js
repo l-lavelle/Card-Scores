@@ -40,7 +40,6 @@ export function SpadesPlayers({ navigation }) {
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
-      console.log("storeData", jsonValue);
       await AsyncStorage.setItem("teamData", jsonValue);
     } catch (e) {
       console.log(e);
@@ -48,15 +47,15 @@ export function SpadesPlayers({ navigation }) {
     }
   };
 
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem("teamData");
-      console.log(JSON.parse(jsonValue));
-      // return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
-      // error reading value
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const jsonValue = await AsyncStorage.getItem("teamData");
+  //     console.log(JSON.parse(jsonValue));
+  //     // return jsonValue != null ? JSON.parse(jsonValue) : null;
+  //   } catch (e) {
+  //     // error reading value
+  //   }
+  // };
   return (
     <View>
       <View>
