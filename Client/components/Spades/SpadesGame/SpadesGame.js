@@ -15,7 +15,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import { SpadesBidModal } from "./SpadesBidModal";
 export function SpadesGame() {
   useEffect(() => {
     getData();
@@ -36,10 +36,19 @@ export function SpadesGame() {
   const [scores, setScores] = useState({ team1Score: 0, team2Score: 0 });
   const [modalOpen, setModalOpen] = useState(false);
 
+  const toggleModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <>
       <View style={SpadesStyles.container}>
-        <Modal
+        <SpadesBidModal
+          show={modalOpen}
+          onHide={() => setModalOpen(false)}
+          visible={modalOpen}
+        />
+        {/* <Modal
           visible={modalOpen}
           animationType="slide"
           presentationStyle="pageSheet"
@@ -52,7 +61,8 @@ export function SpadesGame() {
               onPress={() => setModalOpen(false)}
             />
           </View>
-        </Modal>
+          <View></View>
+        </Modal> */}
 
         <Text style={SpadesStyles.spadesTitle}>Spades Score</Text>
         <View style={SpadesStyles.spadesTeamConatiner}>
@@ -71,10 +81,7 @@ export function SpadesGame() {
           <Text>Score: {scores.team2Score}</Text>
           <Text>Bid:</Text>
         </View>
-        <Pressable
-          style={SpadesStyles.bidBtn}
-          onPress={() => setModalOpen(true)}
-        >
+        <Pressable style={SpadesStyles.bidBtn} onPress={toggleModal}>
           <Text style={SpadesStyles.bidBtnText}>Bid</Text>
         </Pressable>
         <StatusBar style="auto" />
