@@ -6,15 +6,14 @@ const getFontSize = (size) => size / fontScale;
 export const SpadesStyles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-  },
-  scroller: {
-    flex: 1,
-  },
-  spadesTeamContainer: {
-    alignItems: "center",
+    alignSelf: "center",
     justifyContent: "center",
-    flexDirection: "row",
+    borderRadius: 12,
+    minWidth: 24,
+    height: 24,
+    borderWidth: 3,
+    borderColor: "red",
+    alignItems: "center",
   },
   TeamName: {
     fontSize: getFontSize(30),

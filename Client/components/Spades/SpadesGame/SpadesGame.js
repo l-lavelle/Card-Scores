@@ -33,21 +33,27 @@ export function SpadesGame() {
   };
 
   const [data, setData] = useState({});
+  const [scores, setScores] = useState({ team1Score: 0, team2Score: 0 });
 
   return (
-    <View style={SpadesStyles.container}>
-      <ScrollView style={SpadesStyles.scroller}>
-        <Text>Spades</Text>
-        <View styles={SpadesStyles.spadesTeamContainer}>
-          <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
-          <Text>{data.player1}</Text>
-          <Text>{data.player2}</Text>
-        </View>
-        <Text>{data.team2Name}</Text>
-        <Text>{data.player3}</Text>
-        <Text>{data.player4}</Text>
-        <StatusBar style="auto" />
-      </ScrollView>
-    </View>
+    <>
+      <Text>Spades Score</Text>
+      {/* <ScrollView style={SpadesStyles.scroller}> */}
+      <View styles={SpadesStyles.container}>
+        <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
+        <Text>{data.player1}</Text>
+        <Text>{data.player2}</Text>
+        <Text>Score: {scores.team1Score}</Text>
+        <Text>Bid:</Text>
+      </View>
+
+      {/* <Text>{data.team2Name}</Text>
+      <Text>{data.player3}</Text>
+      <Text>{data.player4}</Text>
+      <Text>Score: {scores.team2Score}</Text>
+      <Text>Bid:</Text>
+      <StatusBar style="auto" /> */}
+      {/* </ScrollView> */}
+    </>
   );
 }
