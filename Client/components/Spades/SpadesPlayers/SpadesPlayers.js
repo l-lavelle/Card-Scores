@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-  TextInput,
-  Button,
-} from "react-native";
-import { styles } from "./SpadesPlayersStyles";
+import { View, Text, SafeAreaView, TextInput, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { PlayersStyles } from "./SpadesPlayersStyles";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export function SpadesPlayers({ navigation }) {
   const [teamData, onChangeTeamData] = React.useState({
@@ -32,7 +23,6 @@ export function SpadesPlayers({ navigation }) {
   };
 
   const CreateTeams = () => {
-    // console.log(teamData);
     storeData(teamData);
     navigation.navigate("Spades");
   };
@@ -47,25 +37,17 @@ export function SpadesPlayers({ navigation }) {
     }
   };
 
-  // const getData = async () => {
-  //   try {
-  //     const jsonValue = await AsyncStorage.getItem("teamData");
-  //     console.log(JSON.parse(jsonValue));
-  //     // return jsonValue != null ? JSON.parse(jsonValue) : null;
-  //   } catch (e) {
-  //     // error reading value
-  //   }
-  // };
   return (
-    <View>
+    <View style={PlayersStyles.container}>
       <View>
-        <Text>Choose Your Teams:</Text>
+        <Text style={PlayersStyles.teamsText}>Choose Your Teams:</Text>
       </View>
       {elementVisible ? (
-        <View style={styles.team1Container}>
+        <View style={PlayersStyles.team1Container}>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Team 1 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["team1Name"]: newValue })
               }
@@ -75,8 +57,9 @@ export function SpadesPlayers({ navigation }) {
             />
           </SafeAreaView>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Player 1 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["player1"]: newValue })
               }
@@ -86,8 +69,9 @@ export function SpadesPlayers({ navigation }) {
             />
           </SafeAreaView>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Player 2 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["player2"]: newValue })
               }
@@ -95,19 +79,20 @@ export function SpadesPlayers({ navigation }) {
               placeholder="Player"
               keyboardType="default"
             />
+            <Pressable
+              style={PlayersStyles.createTeamBtn}
+              onPress={storeAndChange}
+            >
+              <Text style={PlayersStyles.createTeamTxt}>Create Team 1</Text>
+            </Pressable>
           </SafeAreaView>
-          <Button
-            onPress={storeAndChange}
-            title="Create Team 1"
-            color="#841584"
-            accessibilityLabel="Create Team 1"
-          />
         </View>
       ) : (
-        <View>
+        <View style={PlayersStyles.team1Container}>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Team 2 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["team2Name"]: newValue })
               }
@@ -117,8 +102,9 @@ export function SpadesPlayers({ navigation }) {
             />
           </SafeAreaView>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Player 1 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["player3"]: newValue })
               }
@@ -128,8 +114,9 @@ export function SpadesPlayers({ navigation }) {
             />
           </SafeAreaView>
           <SafeAreaView>
+            <Text style={PlayersStyles.teamInputText}>Player 2 Name:</Text>
             <TextInput
-              style={styles.input}
+              style={PlayersStyles.input}
               onChangeText={(newValue) =>
                 onChangeTeamData({ ...teamData, ["player4"]: newValue })
               }
@@ -137,13 +124,13 @@ export function SpadesPlayers({ navigation }) {
               placeholder="Player"
               keyboardType="default"
             />
+            <Pressable
+              style={PlayersStyles.createTeamBtn}
+              onPress={CreateTeams}
+            >
+              <Text style={PlayersStyles.createTeamTxt}>Create Team 2</Text>
+            </Pressable>
           </SafeAreaView>
-          <Button
-            onPress={CreateTeams}
-            title="Create Team 1"
-            color="#841584"
-            accessibilityLabel="Create Team 2"
-          />
         </View>
       )}
       <StatusBar style="auto" />

@@ -11,6 +11,7 @@ import {
   Button,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SpadesStyles } from "./SpadesGameStyles";
 
 export function SpadesGame() {
   useEffect(() => {
@@ -33,14 +34,20 @@ export function SpadesGame() {
 
   const [data, setData] = useState({});
 
-  const newTam = "geroge";
   return (
-    <View>
-      <View>
+    <View style={SpadesStyles.container}>
+      <ScrollView style={SpadesStyles.scroller}>
         <Text>Spades</Text>
-        <Text>{data.player1}</Text>
-      </View>
-      <StatusBar style="auto" />
+        <View styles={SpadesStyles.spadesTeamContainer}>
+          <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
+          <Text>{data.player1}</Text>
+          <Text>{data.player2}</Text>
+        </View>
+        <Text>{data.team2Name}</Text>
+        <Text>{data.player3}</Text>
+        <Text>{data.player4}</Text>
+        <StatusBar style="auto" />
+      </ScrollView>
     </View>
   );
 }
