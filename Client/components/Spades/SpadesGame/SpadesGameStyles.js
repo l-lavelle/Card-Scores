@@ -6,17 +6,42 @@ const getFontSize = (size) => size / fontScale;
 export const SpadesStyles = StyleSheet.create({
   container: {
     flex: 1,
-    alignSelf: "center",
-    justifyContent: "center",
-    borderRadius: 12,
-    minWidth: 24,
-    height: 24,
-    borderWidth: 3,
-    borderColor: "red",
-    alignItems: "center",
+    margin: "3%",
+  },
+  spadesTitle: {
+    fontSize: getFontSize(55),
   },
   TeamName: {
-    fontSize: getFontSize(30),
+    fontSize: getFontSize(45),
+  },
+  spadesTeamConatiner: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 3,
+    borderRadius: 25,
+    marginTop: "3%",
+    marginBottom: "3%",
+  },
+  spadesPlayerName: {
+    flexDirection: "row",
+  },
+  bidBtn: {
+    margin: "5%",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: "black",
+  },
+  bidBtnText: {
+    fontSize: getFontSize(18),
+    lineHeight: 21,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "white",
   },
   //   teamsText: {
   //     textAlign: "center",
