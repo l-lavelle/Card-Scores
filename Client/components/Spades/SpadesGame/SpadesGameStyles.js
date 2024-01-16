@@ -12,7 +12,7 @@ export const SpadesStyles = StyleSheet.create({
     fontSize: getFontSize(55),
   },
   TeamName: {
-    fontSize: getFontSize(45),
+    fontSize: getFontSize(50),
   },
   spadesTeamConatiner: {
     flex: 1,
@@ -25,6 +25,7 @@ export const SpadesStyles = StyleSheet.create({
   },
   spadesPlayerName: {
     flexDirection: "row",
+    // justifyContent: "space",
   },
   bidBtn: {
     margin: "5%",
