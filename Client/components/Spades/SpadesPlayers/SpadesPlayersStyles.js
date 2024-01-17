@@ -43,4 +43,32 @@ export const PlayersStyles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
+  txtField: {
+    position: "relative",
+    borderBottomColor: "black",
+    borderBottomWidth: 2,
+  },
+  txtFieldType: {
+    position: "relative",
+    borderBottomColor: "red",
+    borderBottomWidth: 2,
+  },
+  txtFieldInput: {
+    width: "100%",
+    // padding: 0 5,
+    height: 40,
+    fontSize: 16,
+    border: "none",
+    background: "none",
+    outline: "none",
+  },
+  txtFieldLabel: {
+    position: "absolute",
+    top: "50%",
+    left: 5,
+    color: "#adadad",
+    transform: [{ translateY: -50 }],
+    fontSize: 16,
+    pointerEvents: "none",
+  },
 });

@@ -81,6 +81,7 @@ export function SpadesGame() {
           <Text>Score: {scores.team2Score}</Text>
           <Text>Bid:</Text>
         </View>
+
         <Pressable style={SpadesStyles.bidBtn} onPress={toggleModal}>
           <Text style={SpadesStyles.bidBtnText}>Bid</Text>
         </Pressable>

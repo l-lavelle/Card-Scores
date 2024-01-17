@@ -47,6 +47,7 @@ export function SpadesBidModal(props) {
     //   // saving error
     // }
   };
+  const [bid, setBid] = useState({ team1bid: 0, team2bid: 0 });
 
   const [data, setData] = useState("hi");
   /** State Handler */

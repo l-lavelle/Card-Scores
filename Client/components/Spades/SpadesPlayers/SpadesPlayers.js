@@ -16,6 +16,7 @@ export function SpadesPlayers({ navigation }) {
     player4: "",
   });
   const [elementVisible, setElementVisible] = useState(true);
+  const [trail, setTrial] = useState(false);
 
   const storeAndChange = () => {
     console.log(teamData);
@@ -45,6 +46,20 @@ export function SpadesPlayers({ navigation }) {
       {elementVisible ? (
         <View style={PlayersStyles.team1Container}>
           <SafeAreaView>
+            <View
+              style={
+                trail === "true"
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <Pressable onPress={() => console.log("hi")}>
+                <TextInput style={PlayersStyles.txtFieldInput}></TextInput>
+              </Pressable>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text style={PlayersStyles.txtFieldLabel}>Trial</Text>
+            </View>
+
             <Text style={PlayersStyles.teamInputText}>Team 1 Name:</Text>
             <TextInput
               style={PlayersStyles.input}
