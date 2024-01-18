@@ -19,36 +19,48 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Counter } from "../SpadesCounter/Counter";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+// import BouncyCheckbox from "./lib/BouncyCheckbox";
+// import RNBounceable from "@freakycoder/react-native-bounceable";
 
 export function SpadesBidModal(props) {
-  //   const [modalOpen, setModalOpen] = useState(false);
-  const [counter, setCounter] = useState({ one: 0, two: 3 });
-
-  const addOne = async (value) => {
-    if (value < 13) {
-      setCounter(value + 1);
-    }
-  };
-
-  const subtractOne = async () => {
-    if (counter >= 1) {
-      setCounter(counter - 1);
-    }
-  };
+  const [checkboxState, setCheckboxState] = useState(false);
 
   const saveBid = async (value) => {
     console.log("hi");
-    // try {
-    //   const jsonValue = JSON.stringify(value);
-    //   await AsyncStorage.setItem("teamData", jsonValue);
-    // } catch (e) {
-    //   console.log(e);
-    //   // saving error
-    // }
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("teamData", jsonValue);
+    } catch (e) {
+      console.log(e);
+      // saving error
+    }
+  };
+
+  const madeBid = async (value) => {
+    if (value === "team2") {
+      console.log("hi");
+    }
+  };
+
+  const lostBid = async () => {
+    console.log("hi");
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("teamData", jsonValue);
+    } catch (e) {
+      console.log(e);
+      // saving error
+    }
   };
 
   // Set state for the counters and pass down
-  const [bid, setBid] = useState({ team1bid: 0, team2bid: 3 });
+  const [bid, setBid] = useState({
+    team1bid: 0,
+    team2bid: 0,
+    team1null: false,
+    team2null: false,
+  });
   const update1Bid = (bidData) => setBid({ ...bid, ["team1bid"]: bidData });
   const update2Bid = (bidData) => setBid({ ...bid, ["team2bid"]: bidData });
 
@@ -57,9 +69,32 @@ export function SpadesBidModal(props) {
       <View>
         <MaterialIcons name="close" size={50} onPress={props.onHide} />
         <Counter teamBid={bid.team1bid} onUpdate={update1Bid} />
+        <BouncyCheckbox
+          style={{ marginTop: 16 }}
+          textStyle={{
+            textDecorationLine: "none",
+          }}
+          isChecked={bid.team1null}
+          text="Null"
+          disableBuiltInState
+          onPress={() => setBid({ ...bid, ["team1null"]: !bid.team1null })}
+        />
         <Counter teamBid={bid.team2bid} onUpdate={update2Bid} />
-        <Pressable onPress={saveBid}>
-          <Text>Save Bid</Text>
+        <BouncyCheckbox
+          style={{ marginTop: 16 }}
+          textStyle={{
+            textDecorationLine: "none",
+          }}
+          isChecked={bid.team2null}
+          text="Null"
+          disableBuiltInState
+          onPress={() => setBid({ ...bid, ["team2null"]: !bid.team2null })}
+        />
+        <Pressable onPress={() => madeBid("team2")}>
+          <Text>made bid</Text>
+        </Pressable>
+        <Pressable onPress={lostBid}>
+          <Text>Didnt make</Text>
         </Pressable>
       </View>
       <View></View>
