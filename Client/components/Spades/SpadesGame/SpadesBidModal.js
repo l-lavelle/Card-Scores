@@ -19,7 +19,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Counter } from "../SpadesCounter/Counter";
-import { Child } from "../Child";
 
 export function SpadesBidModal(props) {
   //   const [modalOpen, setModalOpen] = useState(false);
@@ -47,24 +46,21 @@ export function SpadesBidModal(props) {
     //   // saving error
     // }
   };
-  const [bid, setBid] = useState({ team1bid: 0, team2bid: 0 });
 
-  const [data, setData] = useState("hi");
-  /** State Handler */
-  const onChildPress = (childData) => setData(childData);
+  // Set state for the counters and pass down
+  const [bid, setBid] = useState({ team1bid: 0, team2bid: 3 });
+  const update1Bid = (bidData) => setBid({ ...bid, ["team1bid"]: bidData });
+  const update2Bid = (bidData) => setBid({ ...bid, ["team2bid"]: bidData });
 
   return (
     <Modal {...props} animationType="slide" presentationStyle="pageSheet">
       <View>
         <MaterialIcons name="close" size={50} onPress={props.onHide} />
-        <Counter />
-        <Counter />
+        <Counter teamBid={bid.team1bid} onUpdate={update1Bid} />
+        <Counter teamBid={bid.team2bid} onUpdate={update2Bid} />
         <Pressable onPress={saveBid}>
           <Text>Save Bid</Text>
         </Pressable>
-        <Text>ji</Text>
-        <Text>{`Parent data: ${data}`}</Text>
-        <Child onUpdate={onChildPress} />
       </View>
       <View></View>
     </Modal>
