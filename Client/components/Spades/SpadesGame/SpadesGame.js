@@ -32,9 +32,23 @@ export function SpadesGame() {
     }
   };
 
+  // const storeScore = async (value) => {
+  //   try {
+  //     const jsonValue = JSON.stringify(value);
+  //     await AsyncStorage.setItem("teamScores", jsonValue);
+  //   } catch (e) {
+  //     console.log(e);
+  //     // saving error
+  //   }
+  // };
+
   const [data, setData] = useState({});
   const [scores, setScores] = useState({ team1Score: 0, team2Score: 0 });
   const [modalOpen, setModalOpen] = useState(false);
+  const updateScore1 = (score) =>
+    setScores({ ...scores, ["team1Score"]: score });
+  const updateScore2 = (score) =>
+    setScores({ ...scores, ["team2Score"]: score });
 
   const toggleModal = () => {
     setModalOpen(true);
@@ -44,6 +58,10 @@ export function SpadesGame() {
     <>
       <View style={SpadesStyles.container}>
         <SpadesBidModal
+          team1Score={scores.team1Score}
+          team2Score={scores.team2Score}
+          update1Score={updateScore1}
+          update2Score={updateScore2}
           show={modalOpen}
           onHide={() => setModalOpen(false)}
           visible={modalOpen}

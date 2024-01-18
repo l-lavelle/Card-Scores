@@ -1,6 +1,3 @@
-// trying to get and save the bids in state
-// counter passed down but will not increment/decremnet with
-// not having any luck so far
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -20,12 +17,8 @@ import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Counter } from "../SpadesCounter/Counter";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-// import BouncyCheckbox from "./lib/BouncyCheckbox";
-// import RNBounceable from "@freakycoder/react-native-bounceable";
 
 export function SpadesBidModal(props) {
-  const [checkboxState, setCheckboxState] = useState(false);
-
   const saveBid = async (value) => {
     console.log("hi");
     try {
@@ -38,20 +31,23 @@ export function SpadesBidModal(props) {
   };
 
   const madeBid = async (value) => {
-    if (value === "team2") {
-      console.log("hi");
+    if (value === "team1") {
+      let add1Score = bid.team1bid * 10 + props.team1Score;
+      if (bid.team1null) {
+        add1Score = 100 + add1Score;
+      }
+      props.update1Score(add1Score);
+    } else {
+      let add2Score = bid.team2bid * 10 + props.team2Score;
+      if (bid.team2null) {
+        add2Score = 100 + add2Score;
+      }
+      props.update2Score(add2Score);
     }
   };
 
   const lostBid = async () => {
     console.log("hi");
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("teamData", jsonValue);
-    } catch (e) {
-      console.log(e);
-      // saving error
-    }
   };
 
   // Set state for the counters and pass down
@@ -79,6 +75,12 @@ export function SpadesBidModal(props) {
           disableBuiltInState
           onPress={() => setBid({ ...bid, ["team1null"]: !bid.team1null })}
         />
+        <Pressable onPress={() => madeBid("team1")} style={{ marginTop: 16 }}>
+          <Text>made bid</Text>
+        </Pressable>
+        <Pressable onPress={lostBid} style={{ marginTop: 16 }}>
+          <Text>Didnt make</Text>
+        </Pressable>
         <Counter teamBid={bid.team2bid} onUpdate={update2Bid} />
         <BouncyCheckbox
           style={{ marginTop: 16 }}
@@ -90,10 +92,10 @@ export function SpadesBidModal(props) {
           disableBuiltInState
           onPress={() => setBid({ ...bid, ["team2null"]: !bid.team2null })}
         />
-        <Pressable onPress={() => madeBid("team2")}>
+        <Pressable onPress={() => madeBid("team2")} style={{ marginTop: 16 }}>
           <Text>made bid</Text>
         </Pressable>
-        <Pressable onPress={lostBid}>
+        <Pressable onPress={lostBid} style={{ marginTop: 16 }}>
           <Text>Didnt make</Text>
         </Pressable>
       </View>
