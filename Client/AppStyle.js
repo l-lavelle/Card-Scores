@@ -21,8 +21,8 @@ export const styles = StyleSheet.create({
     color: "white",
   },
   infoText: {
-    fontSize: getFontSize(17),
-    margin: "2%",
+    fontSize: getFontSize(18),
+    margin: "3%",
     marginTop: "3%",
   },
   gameContainer: {

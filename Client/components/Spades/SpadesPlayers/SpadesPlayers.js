@@ -16,16 +16,55 @@ export function SpadesPlayers({ navigation }) {
     player4: "",
   });
   const [elementVisible, setElementVisible] = useState(true);
-  const [trail, setTrial] = useState(false);
+  // const [inputColor, setInputColor] = useState(true);
+  // const [labelLift, setLabelLift] = useState(true);
+  const [inputColor, setInputColor] = useState({
+    team: true,
+    playerTop: true,
+    playerBottom: true,
+  });
+  const [labelLift, setLabelLift] = useState({
+    team: true,
+    playerTop: true,
+    playerBottom: true,
+  });
 
   const storeAndChange = () => {
     console.log(teamData);
     setElementVisible(false);
+    setLabelLift({
+      team: true,
+      playerTop: true,
+      playerBottom: true,
+    });
   };
 
   const CreateTeams = () => {
     storeData(teamData);
     navigation.navigate("Spades");
+  };
+
+  // const styleInputs = () => {
+  //   setLabelLift(false);
+  //   setInputColor(!inputColor);
+  // };
+
+  const styleInputs = () => {
+    setLabelLift({ ...labelLift, ["team"]: false });
+    setInputColor({ ...inputColor, ["team"]: !inputColor.team });
+  };
+
+  const styleInputs1 = () => {
+    setLabelLift({ ...labelLift, ["playerTop"]: false });
+    setInputColor({ ...inputColor, ["playerTop"]: !inputColor.playerTop });
+  };
+
+  const styleInputs2 = () => {
+    setLabelLift({ ...labelLift, ["playerBottom"]: false });
+    setInputColor({
+      ...inputColor,
+      ["playerBottom"]: !inputColor.playerBottom,
+    });
   };
 
   const storeData = async (value) => {
@@ -48,19 +87,99 @@ export function SpadesPlayers({ navigation }) {
           <SafeAreaView>
             <View
               style={
-                trail === "true"
+                inputColor.team
                   ? PlayersStyles.txtField
                   : PlayersStyles.txtFieldType
               }
             >
-              <Pressable onPress={() => console.log("hi")}>
-                <TextInput style={PlayersStyles.txtFieldInput}></TextInput>
-              </Pressable>
+              <TextInput
+                onFocus={styleInputs}
+                onBlur={() =>
+                  setInputColor({ ...inputColor, ["team"]: !inputColor.team })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["team1Name"]: newValue })
+                }
+                value={teamData.team1Name}
+              ></TextInput>
               <Text style={PlayersStyles.txtFieldSpan}></Text>
-              <Text style={PlayersStyles.txtFieldLabel}>Trial</Text>
+              <Text
+                style={
+                  labelLift.team
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Team 1 Name
+              </Text>
+            </View>
+            <View
+              style={
+                inputColor.playerTop
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <TextInput
+                onFocus={styleInputs1}
+                onBlur={() =>
+                  setInputColor({
+                    ...inputColor,
+                    ["playerTop"]: !inputColor.playerTop,
+                  })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["player1"]: newValue })
+                }
+                value={teamData.player1}
+              ></TextInput>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text
+                style={
+                  labelLift.playerTop
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Player 1
+              </Text>
+            </View>
+            <View
+              style={
+                inputColor.playerBottom
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <TextInput
+                onFocus={styleInputs2}
+                onBlur={() =>
+                  setInputColor({
+                    ...inputColor,
+                    ["playerBottom"]: !inputColor.playerBottom,
+                  })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["player2"]: newValue })
+                }
+                value={teamData.player2}
+              ></TextInput>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text
+                style={
+                  labelLift.playerBottom
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Player 2
+              </Text>
             </View>
 
-            <Text style={PlayersStyles.teamInputText}>Team 1 Name:</Text>
+            {/* <Text style={PlayersStyles.teamInputText}>Team 1 Name:</Text>
             <TextInput
               style={PlayersStyles.input}
               onChangeText={(newValue) =>
@@ -93,7 +212,7 @@ export function SpadesPlayers({ navigation }) {
               value={teamData.player2}
               placeholder="Player"
               keyboardType="default"
-            />
+            /> */}
             <Pressable
               style={PlayersStyles.createTeamBtn}
               onPress={storeAndChange}
@@ -105,7 +224,100 @@ export function SpadesPlayers({ navigation }) {
       ) : (
         <View style={PlayersStyles.team1Container}>
           <SafeAreaView>
-            <Text style={PlayersStyles.teamInputText}>Team 2 Name:</Text>
+            <View
+              style={
+                inputColor.team
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <TextInput
+                onFocus={styleInputs}
+                onBlur={() =>
+                  setInputColor({ ...inputColor, ["team"]: !inputColor.team })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["team2Name"]: newValue })
+                }
+                value={teamData.team2Name}
+              ></TextInput>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text
+                style={
+                  labelLift.team
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Team 2 Name
+              </Text>
+            </View>
+            <View
+              style={
+                inputColor.playerTop
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <TextInput
+                onFocus={styleInputs1}
+                onBlur={() =>
+                  setInputColor({
+                    ...inputColor,
+                    ["playerTop"]: !inputColor.playerTop,
+                  })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["player3"]: newValue })
+                }
+                value={teamData.player3}
+              ></TextInput>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text
+                style={
+                  labelLift.playerTop
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Player 1
+              </Text>
+            </View>
+            <View
+              style={
+                inputColor.playerBottom
+                  ? PlayersStyles.txtField
+                  : PlayersStyles.txtFieldType
+              }
+            >
+              <TextInput
+                onFocus={styleInputs2}
+                onBlur={() =>
+                  setInputColor({
+                    ...inputColor,
+                    ["playerBottom"]: !inputColor.playerBottom,
+                  })
+                }
+                style={PlayersStyles.txtFieldInput}
+                onChangeText={(newValue) =>
+                  onChangeTeamData({ ...teamData, ["player4"]: newValue })
+                }
+                value={teamData.player4}
+              ></TextInput>
+              <Text style={PlayersStyles.txtFieldSpan}></Text>
+              <Text
+                style={
+                  labelLift.playerBottom
+                    ? PlayersStyles.txtFieldLabel
+                    : PlayersStyles.txtFieldLabelAbove
+                }
+              >
+                Player 2
+              </Text>
+            </View>
+            {/* <Text style={PlayersStyles.teamInputText}>Team 2 Name:</Text>
             <TextInput
               style={PlayersStyles.input}
               onChangeText={(newValue) =>
@@ -138,7 +350,7 @@ export function SpadesPlayers({ navigation }) {
               value={teamData.player4}
               placeholder="Player"
               keyboardType="default"
-            />
+            /> */}
             <Pressable
               style={PlayersStyles.createTeamBtn}
               onPress={CreateTeams}
