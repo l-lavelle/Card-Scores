@@ -1,10 +1,9 @@
+// TODO: Validate text and max characters
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Text, SafeAreaView, TextInput, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { PlayersStyles } from "./SpadesPlayersStyles";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export function SpadesPlayers({ navigation }) {
   const [teamData, onChangeTeamData] = React.useState({
@@ -16,8 +15,6 @@ export function SpadesPlayers({ navigation }) {
     player4: "",
   });
   const [elementVisible, setElementVisible] = useState(true);
-  // const [inputColor, setInputColor] = useState(true);
-  // const [labelLift, setLabelLift] = useState(true);
   const [inputColor, setInputColor] = useState({
     team: true,
     playerTop: true,
@@ -29,26 +26,7 @@ export function SpadesPlayers({ navigation }) {
     playerBottom: true,
   });
 
-  const storeAndChange = () => {
-    console.log(teamData);
-    setElementVisible(false);
-    setLabelLift({
-      team: true,
-      playerTop: true,
-      playerBottom: true,
-    });
-  };
-
-  const CreateTeams = () => {
-    storeData(teamData);
-    navigation.navigate("Spades");
-  };
-
-  // const styleInputs = () => {
-  //   setLabelLift(false);
-  //   setInputColor(!inputColor);
-  // };
-
+  // Created three too many re-renders passing value through- look into
   const styleInputs = () => {
     setLabelLift({ ...labelLift, ["team"]: false });
     setInputColor({ ...inputColor, ["team"]: !inputColor.team });
@@ -67,6 +45,23 @@ export function SpadesPlayers({ navigation }) {
     });
   };
 
+  // Store team 1 in storage and switch to next view
+  const storeAndChange = () => {
+    setElementVisible(false);
+    setLabelLift({
+      team: true,
+      playerTop: true,
+      playerBottom: true,
+    });
+  };
+
+  // Store team 2 data and navigate to next component
+  const CreateTeams = () => {
+    storeData(teamData);
+    navigation.navigate("Spades");
+  };
+
+  // Store data in Async Storage
   const storeData = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -178,41 +173,6 @@ export function SpadesPlayers({ navigation }) {
                 Player 2
               </Text>
             </View>
-
-            {/* <Text style={PlayersStyles.teamInputText}>Team 1 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["team1Name"]: newValue })
-              }
-              value={teamData.team1Name}
-              placeholder="Team 1 Name"
-              keyboardType="default"
-            />
-          </SafeAreaView>
-          <SafeAreaView>
-            <Text style={PlayersStyles.teamInputText}>Player 1 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["player1"]: newValue })
-              }
-              value={teamData.player1}
-              placeholder="Player"
-              keyboardType="default"
-            />
-          </SafeAreaView>
-          <SafeAreaView>
-            <Text style={PlayersStyles.teamInputText}>Player 2 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["player2"]: newValue })
-              }
-              value={teamData.player2}
-              placeholder="Player"
-              keyboardType="default"
-            /> */}
             <Pressable
               style={PlayersStyles.createTeamBtn}
               onPress={storeAndChange}
@@ -317,40 +277,6 @@ export function SpadesPlayers({ navigation }) {
                 Player 2
               </Text>
             </View>
-            {/* <Text style={PlayersStyles.teamInputText}>Team 2 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["team2Name"]: newValue })
-              }
-              value={teamData.team2Name}
-              placeholder="Team 2 Name"
-              keyboardType="default"
-            />
-          </SafeAreaView>
-          <SafeAreaView>
-            <Text style={PlayersStyles.teamInputText}>Player 1 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["player3"]: newValue })
-              }
-              value={teamData.player3}
-              placeholder="Player"
-              keyboardType="default"
-            />
-          </SafeAreaView>
-          <SafeAreaView>
-            <Text style={PlayersStyles.teamInputText}>Player 2 Name:</Text>
-            <TextInput
-              style={PlayersStyles.input}
-              onChangeText={(newValue) =>
-                onChangeTeamData({ ...teamData, ["player4"]: newValue })
-              }
-              value={teamData.player4}
-              placeholder="Player"
-              keyboardType="default"
-            /> */}
             <Pressable
               style={PlayersStyles.createTeamBtn}
               onPress={CreateTeams}

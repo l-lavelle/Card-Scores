@@ -93,8 +93,7 @@ function App() {
 export default App;
 
 // When game loads choose players: depending on how many you can have
-// Insturction incons for how to score and rules
-// Scoring
+// Insturction icons for how to rules
+// Scoring history with edit?? better for database then local storage system??
 
 // Need to change font family: open sans and others
-// Pictures for other games

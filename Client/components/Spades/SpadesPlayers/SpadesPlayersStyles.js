@@ -12,20 +12,9 @@ export const PlayersStyles = StyleSheet.create({
     paddingTop: "5%",
     fontSize: getFontSize(27),
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
   team1Container: {
     margin: "3%",
     marginTop: "8%",
-  },
-  teamInputText: {
-    fontSize: getFontSize(18),
-    marginLeft: "3%",
-    marginTop: "5%",
   },
   createTeamBtn: {
     margin: "5%",
@@ -47,7 +36,7 @@ export const PlayersStyles = StyleSheet.create({
   txtField: {
     position: "relative",
     borderBottomColor: "black",
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     marginHorizontal: "2%",
     marginTop: "2%",
     marginBottom: "10%",
@@ -55,14 +44,13 @@ export const PlayersStyles = StyleSheet.create({
   txtFieldType: {
     position: "relative",
     borderBottomColor: "red",
-    borderBottomWidth: 2,
+    borderBottomWidth: 3,
     marginHorizontal: "2%",
     marginTop: "2%",
     marginBottom: "10%",
   },
   txtFieldInput: {
     width: "100%",
-    // padding: 0 5,
     height: 20,
     fontSize: 16,
     border: "none",

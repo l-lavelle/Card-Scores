@@ -1,3 +1,4 @@
+// Team 1 not scoring but team 2 is
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -19,35 +20,89 @@ import { Counter } from "../SpadesCounter/Counter";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export function SpadesBidModal(props) {
-  const saveBid = async (value) => {
+  const saveBid = async () => {
     console.log("hi");
-    try {
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem("teamData", jsonValue);
-    } catch (e) {
-      console.log(e);
-      // saving error
+    if (roundScore.team1MadeBid) {
+      console.log("team 1 made");
+      await madeBid1();
+    }
+    if (roundScore.team1LostBid) {
+      console.log("team 1 lost");
+      await lostBid("team1");
+    }
+    if (roundScore.team2MadeBid) {
+      console.log("team 2 made");
+      await madeBid2();
+    }
+    if (roundScore.team2LostBid) {
+      console.log("team 2 lost");
+      await lostBid("team2");
     }
   };
 
-  const madeBid = async (value) => {
+  const madeBid1 = async () => {
+    // if (value === "team1") {
+    console.log("this worked");
+    let add1Score = bid.team1bid * 10 + props.team1Score;
+    if (roundScore.team1MadeNull) {
+      add1Score = 100 + add1Score;
+    } else if (roundScore.team1LostNull) {
+      add1Score = add1Score - 100;
+    }
+    console.log(add1Score);
+    props.update1Score(add1Score);
+    console.log("team score", props.team1Score);
+    // } else {
+    //   let add2Score = bid.team2bid * 10 + props.team2Score;
+    //   if (roundScore.team2MadeNull) {
+    //     add2Score = 100 + add2Score;
+    //   } else if (roundScore.team2LostNull) {
+    //     add2Score = add2Score - 100;
+    //   }
+    //   props.update2Score(add2Score);
+    // }
+  };
+
+  const madeBid2 = async () => {
+    // if (value === "team1") {
+    //   console.log("this worked");
+    //   let add1Score = bid.team1bid * 10 + props.team1Score;
+    //   if (roundScore.team1MadeNull) {
+    //     add1Score = 100 + add1Score;
+    //   } else if (roundScore.team1LostNull) {
+    //     add1Score = add1Score - 100;
+    //   }
+    //   console.log(add1Score);
+    //   props.update1Score(add1Score);
+    // } else {
+    let add2Score = bid.team2bid * 10 + props.team2Score;
+    if (roundScore.team2MadeNull) {
+      add2Score = 100 + add2Score;
+    } else if (roundScore.team2LostNull) {
+      add2Score = add2Score - 100;
+    }
+    props.update2Score(add2Score);
+    // }
+  };
+
+  const lostBid = async (value) => {
     if (value === "team1") {
-      let add1Score = bid.team1bid * 10 + props.team1Score;
-      if (bid.team1null) {
-        add1Score = 100 + add1Score;
+      let lost1Score = props.team1Score - bid.team1bid * 10;
+      if (roundScore.team1MadeNull) {
+        lost1Score = 100 + lost1Score;
+      } else if (roundScore.team1LostNull) {
+        lost1Score = lost1Score - 100;
       }
-      props.update1Score(add1Score);
+      props.update1Score(lost1Score);
     } else {
-      let add2Score = bid.team2bid * 10 + props.team2Score;
-      if (bid.team2null) {
-        add2Score = 100 + add2Score;
+      let lost2Score = props.team2Score - bid.team2bid * 10;
+      if (roundScore.team2MadeNull) {
+        lost2Score = 100 + lost2Score;
+      } else if (roundScore.team2LostNull) {
+        lost2Score = lost2Score - 100;
       }
-      props.update2Score(add2Score);
+      props.update2Score(lost2Score);
     }
-  };
-
-  const lostBid = async () => {
-    console.log("hi");
   };
 
   // Set state for the counters and pass down
@@ -57,6 +112,16 @@ export function SpadesBidModal(props) {
     team1null: false,
     team2null: false,
   });
+  const [roundScore, setRoundscore] = useState({
+    team1MadeBid: false,
+    team1LostBid: false,
+    team2MadeBid: false,
+    team2LostBid: false,
+    team1MadeNull: false,
+    team1LostNull: false,
+    team2MadeNull: false,
+    team2LostNull: false,
+  });
   const update1Bid = (bidData) => setBid({ ...bid, ["team1bid"]: bidData });
   const update2Bid = (bidData) => setBid({ ...bid, ["team2bid"]: bidData });
 
@@ -64,23 +129,90 @@ export function SpadesBidModal(props) {
     <Modal {...props} animationType="slide" presentationStyle="pageSheet">
       <View>
         <MaterialIcons name="close" size={50} onPress={props.onHide} />
-        <Counter teamBid={bid.team1bid} onUpdate={update1Bid} />
-        <BouncyCheckbox
-          style={{ marginTop: 16 }}
-          textStyle={{
-            textDecorationLine: "none",
-          }}
-          isChecked={bid.team1null}
-          text="Null"
-          disableBuiltInState
-          onPress={() => setBid({ ...bid, ["team1null"]: !bid.team1null })}
-        />
-        <Pressable onPress={() => madeBid("team1")} style={{ marginTop: 16 }}>
-          <Text>made bid</Text>
-        </Pressable>
-        <Pressable onPress={lostBid} style={{ marginTop: 16 }}>
-          <Text>Didnt make</Text>
-        </Pressable>
+        <>
+          <Counter teamBid={bid.team1bid} onUpdate={update1Bid} />
+          <BouncyCheckbox
+            style={{ marginTop: 16 }}
+            textStyle={{
+              textDecorationLine: "none",
+            }}
+            isChecked={bid.team1null}
+            text="Null"
+            disableBuiltInState
+            onPress={() => setBid({ ...bid, ["team1null"]: !bid.team1null })}
+          />
+
+          <BouncyCheckbox
+            style={{ marginTop: 16 }}
+            textStyle={{
+              textDecorationLine: "none",
+            }}
+            isChecked={roundScore.team1MadeBid}
+            text="Made Bid"
+            disableBuiltInState
+            onPress={() =>
+              setRoundscore({
+                ...roundScore,
+                ["team1MadeBid"]: !roundScore.team1MadeBid,
+                ["team1LostBid"]: false,
+              })
+            }
+          />
+          <BouncyCheckbox
+            style={{ marginTop: 16 }}
+            textStyle={{
+              textDecorationLine: "none",
+            }}
+            isChecked={roundScore.team1LostBid}
+            text="Lost Bid"
+            disableBuiltInState
+            onPress={() =>
+              setRoundscore({
+                ...roundScore,
+                ["team1LostBid"]: !roundScore.team1LostBid,
+                ["team1MadeBid"]: false,
+              })
+            }
+          />
+          {bid.team1null ? (
+            <>
+              <BouncyCheckbox
+                style={{ marginTop: 16 }}
+                textStyle={{
+                  textDecorationLine: "none",
+                }}
+                isChecked={roundScore.team1MadeNull}
+                text="Made Null"
+                disableBuiltInState
+                onPress={() =>
+                  setRoundscore({
+                    ...roundScore,
+                    ["team1MadeNull"]: !roundScore.team1MadeNull,
+                    ["team1LostNull"]: false,
+                  })
+                }
+              />
+              <BouncyCheckbox
+                style={{ marginTop: 16 }}
+                textStyle={{
+                  textDecorationLine: "none",
+                }}
+                isChecked={roundScore.team1LostNull}
+                text="Lost Null"
+                disableBuiltInState
+                onPress={() =>
+                  setRoundscore({
+                    ...roundScore,
+                    ["team1LostNull"]: !roundScore.team1LostNull,
+                    ["team1MadeNull"]: false,
+                  })
+                }
+              />
+            </>
+          ) : (
+            <></>
+          )}
+        </>
         <Counter teamBid={bid.team2bid} onUpdate={update2Bid} />
         <BouncyCheckbox
           style={{ marginTop: 16 }}
@@ -92,11 +224,79 @@ export function SpadesBidModal(props) {
           disableBuiltInState
           onPress={() => setBid({ ...bid, ["team2null"]: !bid.team2null })}
         />
-        <Pressable onPress={() => madeBid("team2")} style={{ marginTop: 16 }}>
-          <Text>made bid</Text>
-        </Pressable>
-        <Pressable onPress={lostBid} style={{ marginTop: 16 }}>
-          <Text>Didnt make</Text>
+
+        <BouncyCheckbox
+          style={{ marginTop: 16 }}
+          textStyle={{
+            textDecorationLine: "none",
+          }}
+          isChecked={roundScore.team2MadeBid}
+          text="Made Bid"
+          disableBuiltInState
+          onPress={() =>
+            setRoundscore({
+              ...roundScore,
+              ["team2MadeBid"]: !roundScore.team2MadeBid,
+              ["team2LostBid"]: false,
+            })
+          }
+        />
+        <BouncyCheckbox
+          style={{ marginTop: 16 }}
+          textStyle={{
+            textDecorationLine: "none",
+          }}
+          isChecked={roundScore.team2LostBid}
+          text="Lost Bid"
+          disableBuiltInState
+          onPress={() =>
+            setRoundscore({
+              ...roundScore,
+              ["team2LostBid"]: !roundScore.team2LostBid,
+              ["team2MadeBid"]: false,
+            })
+          }
+        />
+        {bid.team2null ? (
+          <>
+            <BouncyCheckbox
+              style={{ marginTop: 16 }}
+              textStyle={{
+                textDecorationLine: "none",
+              }}
+              isChecked={roundScore.team2MadeNull}
+              text="Made Null"
+              disableBuiltInState
+              onPress={() =>
+                setRoundscore({
+                  ...roundScore,
+                  ["team2MadeNull"]: !roundScore.team2MadeNull,
+                  ["team2LostNull"]: false,
+                })
+              }
+            />
+            <BouncyCheckbox
+              style={{ marginTop: 16 }}
+              textStyle={{
+                textDecorationLine: "none",
+              }}
+              isChecked={roundScore.team2LostNull}
+              text="Lost Null"
+              disableBuiltInState
+              onPress={() =>
+                setRoundscore({
+                  ...roundScore,
+                  ["team2LostNull"]: !roundScore.team2LostNull,
+                  ["team2MadeNull"]: false,
+                })
+              }
+            />
+          </>
+        ) : (
+          <></>
+        )}
+        <Pressable onPress={saveBid} style={{ marginTop: 16 }}>
+          <Text>Score Round</Text>
         </Pressable>
       </View>
       <View></View>

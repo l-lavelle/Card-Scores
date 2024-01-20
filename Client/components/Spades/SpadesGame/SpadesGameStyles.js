@@ -10,6 +10,7 @@ export const SpadesStyles = StyleSheet.create({
   },
   spadesTitle: {
     fontSize: getFontSize(55),
+    textAlign: "center",
   },
   TeamName: {
     fontSize: getFontSize(50),
