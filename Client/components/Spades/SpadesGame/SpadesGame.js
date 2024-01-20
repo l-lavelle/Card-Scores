@@ -16,10 +16,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SpadesBidModal } from "./SpadesBidModal";
+
 export function SpadesGame() {
   useEffect(() => {
     getData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("score from main page", scores.team1Score);
+  // }, [scores]);
 
   const getData = async () => {
     try {
@@ -43,21 +48,27 @@ export function SpadesGame() {
   // };
 
   const [data, setData] = useState({});
-  const [scores, setScores] = useState({ team1Score: 0, team2Score: 0 });
+  // const [scores, setScores] = useState({ team1Score: 0, team2Score: 0 });
+
   const [modalOpen, setModalOpen] = useState(false);
-  const updateScore1 = (score) =>
-    setScores({ ...scores, ["team1Score"]: score });
-  const updateScore2 = (score) =>
-    setScores({ ...scores, ["team2Score"]: score });
+  // const updateScore1 = (score) =>
+  //   setScores({ ...scores, ["team1Score"]: score });
+  // const updateScore2 = (score) =>
+  //   setScores({ ...scores, ["team2Score"]: score });
 
   const toggleModal = () => {
     setModalOpen(true);
   };
 
+  const [team1Score, setTeam1score] = useState(0);
+  const [team2Score, setTeam2score] = useState(0);
+  const updateScore1 = (score) => setTeam1score(score);
+  const updateScore2 = (score) => setTeam2score(score);
+
   return (
     <>
       <View style={SpadesStyles.container}>
-        <SpadesBidModal
+        {/* <SpadesBidModal
           team1Score={scores.team1Score}
           team2Score={scores.team2Score}
           update1Score={updateScore1}
@@ -65,22 +76,17 @@ export function SpadesGame() {
           show={modalOpen}
           onHide={() => setModalOpen(false)}
           visible={modalOpen}
-        />
-        {/* <Modal
+        /> */}
+
+        <SpadesBidModal
+          team1Score={team1Score}
+          team2Score={team2Score}
+          update1Score={updateScore1}
+          update2Score={updateScore2}
+          show={modalOpen}
+          onHide={() => setModalOpen(false)}
           visible={modalOpen}
-          animationType="slide"
-          presentationStyle="pageSheet"
-        >
-          <View>
-            <Text>Modal Text</Text>
-            <MaterialIcons
-              name="close"
-              size={50}
-              onPress={() => setModalOpen(false)}
-            />
-          </View>
-          <View></View>
-        </Modal> */}
+        />
 
         <Text style={SpadesStyles.spadesTitle}>Spades Score</Text>
         <View style={SpadesStyles.spadesTeamConatiner}>
@@ -89,14 +95,14 @@ export function SpadesGame() {
             <Text>{data.player1}</Text>
             <Text>{data.player2}</Text>
           </View>
-          <Text>Score: {scores.team1Score}</Text>
+          <Text>Score: {team1Score}</Text>
           <Text>Bid:</Text>
         </View>
         <View style={SpadesStyles.spadesTeamConatiner}>
           <Text>{data.team2Name}</Text>
           <Text>{data.player3}</Text>
           <Text>{data.player4}</Text>
-          <Text>Score: {scores.team2Score}</Text>
+          <Text>Score: {team2Score}</Text>
           <Text>Bid:</Text>
         </View>
 

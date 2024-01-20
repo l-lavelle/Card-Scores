@@ -1,20 +1,6 @@
-// Team 1 not scoring but team 2 is
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
-  TextInput,
-  Button,
-  Pressable,
-  Modal,
-} from "react-native";
+import { View, Text, Pressable, Modal } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Counter } from "../SpadesCounter/Counter";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -23,84 +9,64 @@ export function SpadesBidModal(props) {
   const saveBid = async () => {
     console.log("hi");
     if (roundScore.team1MadeBid) {
-      console.log("team 1 made");
-      await madeBid1();
+      madeBid("team1");
     }
     if (roundScore.team1LostBid) {
-      console.log("team 1 lost");
-      await lostBid("team1");
+      lostBid("team1");
     }
     if (roundScore.team2MadeBid) {
-      console.log("team 2 made");
-      await madeBid2();
+      madeBid("team2");
     }
     if (roundScore.team2LostBid) {
-      console.log("team 2 lost");
-      await lostBid("team2");
+      lostBid("team2");
     }
   };
 
-  const madeBid1 = async () => {
-    // if (value === "team1") {
-    console.log("this worked");
-    let add1Score = bid.team1bid * 10 + props.team1Score;
-    if (roundScore.team1MadeNull) {
-      add1Score = 100 + add1Score;
-    } else if (roundScore.team1LostNull) {
-      add1Score = add1Score - 100;
+  const madeBid = async (value) => {
+    if (value === "team1") {
+      console.log("team1 made");
+      let add1Score = bid.team1bid * 10 + props.team1Score;
+      if (roundScore.team1MadeNull) {
+        add1Score = 100 + add1Score;
+      } else if (roundScore.team1LostNull) {
+        add1Score = add1Score - 100;
+      }
+      console.log(add1Score);
+      props.update1Score(add1Score);
+    } else {
+      console.log("team 2 made");
+      let add2Score = bid.team2bid * 10 + props.team2Score;
+      if (roundScore.team2MadeNull) {
+        add2Score = 100 + add2Score;
+      } else if (roundScore.team2LostNull) {
+        add2Score = add2Score - 100;
+      }
+      console.log(add2Score);
+      props.update2Score(add2Score);
     }
-    console.log(add1Score);
-    props.update1Score(add1Score);
-    console.log("team score", props.team1Score);
-    // } else {
-    //   let add2Score = bid.team2bid * 10 + props.team2Score;
-    //   if (roundScore.team2MadeNull) {
-    //     add2Score = 100 + add2Score;
-    //   } else if (roundScore.team2LostNull) {
-    //     add2Score = add2Score - 100;
-    //   }
-    //   props.update2Score(add2Score);
-    // }
-  };
-
-  const madeBid2 = async () => {
-    // if (value === "team1") {
-    //   console.log("this worked");
-    //   let add1Score = bid.team1bid * 10 + props.team1Score;
-    //   if (roundScore.team1MadeNull) {
-    //     add1Score = 100 + add1Score;
-    //   } else if (roundScore.team1LostNull) {
-    //     add1Score = add1Score - 100;
-    //   }
-    //   console.log(add1Score);
-    //   props.update1Score(add1Score);
-    // } else {
-    let add2Score = bid.team2bid * 10 + props.team2Score;
-    if (roundScore.team2MadeNull) {
-      add2Score = 100 + add2Score;
-    } else if (roundScore.team2LostNull) {
-      add2Score = add2Score - 100;
-    }
-    props.update2Score(add2Score);
-    // }
   };
 
   const lostBid = async (value) => {
+    console.log(2);
     if (value === "team1") {
+      console.log("team 1 lost");
       let lost1Score = props.team1Score - bid.team1bid * 10;
       if (roundScore.team1MadeNull) {
         lost1Score = 100 + lost1Score;
       } else if (roundScore.team1LostNull) {
         lost1Score = lost1Score - 100;
       }
+      console.log(lost1Score);
       props.update1Score(lost1Score);
     } else {
+      console.log("team 2 lost");
       let lost2Score = props.team2Score - bid.team2bid * 10;
       if (roundScore.team2MadeNull) {
         lost2Score = 100 + lost2Score;
       } else if (roundScore.team2LostNull) {
         lost2Score = lost2Score - 100;
       }
+      console.log(lost2Score);
       props.update2Score(lost2Score);
     }
   };
@@ -122,6 +88,7 @@ export function SpadesBidModal(props) {
     team2MadeNull: false,
     team2LostNull: false,
   });
+
   const update1Bid = (bidData) => setBid({ ...bid, ["team1bid"]: bidData });
   const update2Bid = (bidData) => setBid({ ...bid, ["team2bid"]: bidData });
 
