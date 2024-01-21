@@ -11,7 +11,7 @@ export function Counter({ teamBid, onUpdate }) {
   };
 
   const subtractOne = async () => {
-    if (teamBid >= 1) {
+    if (teamBid >= 5) {
       onUpdate(teamBid - 1);
     }
   };

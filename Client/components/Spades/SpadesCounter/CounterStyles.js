@@ -12,6 +12,6 @@ export const CounterStyles = StyleSheet.create({
   bidAmount: {
     fontSize: getFontSize(20),
     fontWeight: "bold",
-    marginHorizontal: "3%",
+    marginHorizontal: "5%",
   },
 });
