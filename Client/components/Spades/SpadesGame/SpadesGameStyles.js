@@ -12,6 +12,15 @@ export const SpadesStyles = StyleSheet.create({
     fontSize: getFontSize(55),
     textAlign: "center",
   },
+  rulesContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginRight: "5%",
+  },
+  rulesText: {
+    marginRight: "1%",
+    fontSize: getFontSize(24),
+  },
   TeamName: {
     fontSize: getFontSize(50),
   },
@@ -26,7 +35,6 @@ export const SpadesStyles = StyleSheet.create({
   },
   spadesPlayerName: {
     flexDirection: "row",
-    // justifyContent: "space",
   },
   bidBtn: {
     margin: "5%",
@@ -45,40 +53,7 @@ export const SpadesStyles = StyleSheet.create({
     letterSpacing: 0.25,
     color: "white",
   },
-  //   teamsText: {
-  //     textAlign: "center",
-  //     paddingTop: "5%",
-  //     fontSize: getFontSize(27),
-  //   },
-  //   input: {
-  //     height: 40,
-  //     margin: 12,
-  //     borderWidth: 1,
-  //     padding: 10,
-  //   },
-  //   team1Container: {
-  //     margin: "2%",
-  //   },
-  //   teamInputText: {
-  //     fontSize: getFontSize(18),
-  //     marginLeft: "3%",
-  //     marginTop: "5%",
-  //   },
-  //   createTeamBtn: {
-  //     margin: "5%",
-  //     alignItems: "center",
-  //     justifyContent: "center",
-  //     paddingVertical: 12,
-  //     paddingHorizontal: 32,
-  //     borderRadius: 4,
-  //     elevation: 3,
-  //     backgroundColor: "black",
-  //   },
-  //   createTeamTxt: {
-  //     fontSize: getFontSize(18),
-  //     lineHeight: 21,
-  //     fontWeight: "bold",
-  //     letterSpacing: 0.25,
-  //     color: "white",
-  //   },
+  score: {
+    fontSize: getFontSize(25),
+  },
 });

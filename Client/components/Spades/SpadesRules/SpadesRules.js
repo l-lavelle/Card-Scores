@@ -3,7 +3,7 @@ import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function SpadesRules({ navigation }) {
+export function SpadesRules({ navigation }) {
   return (
     <>
       <View>
@@ -42,5 +42,3 @@ function SpadesRules({ navigation }) {
     </>
   );
 }
-
-export default SpadesRules;

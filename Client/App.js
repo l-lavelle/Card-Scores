@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { styles } from "./AppStyle";
 import { SpadesPlayers } from "./components/Spades/SpadesPlayers/SpadesPlayers";
 import { SpadesGame } from "./components/Spades/SpadesGame/SpadesGame";
+import { SpadesRules } from "./components/Spades/SpadesRules/SpadesRules";
+import { SpadesWinner } from "./components/Spades/SpadesWinner/SpadesWinner";
 
 function HomeScreen({ navigation }) {
   return (
@@ -85,6 +87,8 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Spades Players" component={SpadesPlayers} />
         <Stack.Screen name="Spades" component={SpadesGame} />
+        <Stack.Screen name="SpadesRules" component={SpadesRules} />
+        <Stack.Screen name="SpadesWinner" component={SpadesWinner} />
       </Stack.Navigator>
     </NavigationContainer>
   );
