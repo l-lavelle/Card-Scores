@@ -6,11 +6,12 @@ const getFontSize = (size) => size / fontScale;
 export const PlayersStyles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: "10%",
   },
   teamsText: {
     textAlign: "center",
     paddingTop: "5%",
-    fontSize: getFontSize(27),
+    fontSize: getFontSize(35),
   },
   team1Container: {
     margin: "3%",

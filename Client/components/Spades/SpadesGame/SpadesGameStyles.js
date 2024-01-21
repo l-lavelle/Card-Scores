@@ -8,6 +8,11 @@ export const SpadesStyles = StyleSheet.create({
     flex: 1,
     margin: "3%",
   },
+  backImg: {
+    flex: 1,
+    justifyContent: "center",
+    borderRadius: 25,
+  },
   spadesTitle: {
     fontSize: getFontSize(55),
     textAlign: "center",
@@ -27,12 +32,11 @@ export const SpadesStyles = StyleSheet.create({
     marginTop: "8%",
   },
   spadesTeamConatiner: {
-    flex: 1,
+    height: 150,
     alignItems: "center",
-    borderWidth: 3,
     borderRadius: 25,
-    marginTop: "3%",
-    marginBottom: "3%",
+    backgroundColor: "white",
+    opacity: 0.5,
   },
   spadesPlayerName: {
     flexDirection: "row",

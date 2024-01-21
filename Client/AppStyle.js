@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
   individualGameInfoHeader: {
     fontSize: getFontSize(20),
     fontWeight: "bold",
-    textDecorationLine: 1,
+    textDecorationLine: "underline",
     marginBottom: 3,
   },
   individualGameInfo: {

@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  Image,
+  ImageBackground,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpadesStyles } from "./SpadesGameStyles";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -65,23 +72,28 @@ export function SpadesGame({ navigation }) {
             <MaterialIcons name="info" size={35} />
           </View>
         </TouchableOpacity>
-        <View style={SpadesStyles.spadesTeamConatiner}>
-          <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
-          <View style={SpadesStyles.spadesPlayerName}>
-            <Text style={SpadesStyles.playerNameTxt}>{data.player1}</Text>
-            <Text style={SpadesStyles.playerNameTxt}>{data.player2}</Text>
+        <ImageBackground
+          style={SpadesStyles.backImg}
+          source={require("../../../assets/versus.jpg")}
+        >
+          <View style={SpadesStyles.spadesTeamConatiner}>
+            <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
+            <View style={SpadesStyles.spadesPlayerName}>
+              <Text style={SpadesStyles.playerNameTxt}>{data.player1}</Text>
+              <Text style={SpadesStyles.playerNameTxt}>{data.player2}</Text>
+            </View>
+            <Text style={SpadesStyles.score}>Score: {team1Score}</Text>
           </View>
-          <Text style={SpadesStyles.score}>Score: {team1Score}</Text>
-        </View>
-        <View style={SpadesStyles.spadesTeamConatiner}>
-          <Text style={SpadesStyles.TeamName}>{data.team2Name}</Text>
-          <View style={SpadesStyles.spadesPlayerName}>
-            <Text style={SpadesStyles.playerNameTxt}>{data.player3}</Text>
-            <Text style={SpadesStyles.playerNameTxt}>{data.player4}</Text>
-          </View>
-          <Text style={SpadesStyles.score}>Score: {team2Score}</Text>
-        </View>
 
+          <View style={SpadesStyles.spadesTeamConatiner}>
+            <Text style={SpadesStyles.TeamName}>{data.team2Name}</Text>
+            <View style={SpadesStyles.spadesPlayerName}>
+              <Text style={SpadesStyles.playerNameTxt}>{data.player3}</Text>
+              <Text style={SpadesStyles.playerNameTxt}>{data.player4}</Text>
+            </View>
+            <Text style={SpadesStyles.score}>Score: {team2Score}</Text>
+          </View>
+        </ImageBackground>
         <Pressable style={SpadesStyles.bidBtn} onPress={toggleModal}>
           <Text style={SpadesStyles.bidBtnText}>Bid</Text>
         </Pressable>
