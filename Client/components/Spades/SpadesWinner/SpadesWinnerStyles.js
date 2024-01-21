@@ -4,6 +4,15 @@ const fontScale = PixelRatio.getFontScale();
 const getFontSize = (size) => size / fontScale;
 
 export const SpadesWinStyles = StyleSheet.create({
+  winnerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  teamWonText: {
+    fontSize: getFontSize(30),
+    textAlign: "center",
+  },
   rerouteBtn: {
     margin: "5%",
     alignItems: "center",

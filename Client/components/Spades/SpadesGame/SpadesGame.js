@@ -34,9 +34,13 @@ export function SpadesGame({ navigation }) {
   const updateScore1 = (score) => setTeam1score(score);
   const updateScore2 = (score) => setTeam2score(score);
   if (team1Score > 500) {
-    console.log(599);
     navigation.navigate("SpadesWinner", {
       team: data.team1Name,
+    });
+  }
+  if (team2Score > 500) {
+    navigation.navigate("SpadesWinner", {
+      team: data.team2Name,
     });
   }
   return (
@@ -64,15 +68,17 @@ export function SpadesGame({ navigation }) {
         <View style={SpadesStyles.spadesTeamConatiner}>
           <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
           <View style={SpadesStyles.spadesPlayerName}>
-            <Text>{data.player1}</Text>
-            <Text>{data.player2}</Text>
+            <Text style={SpadesStyles.playerNameTxt}>{data.player1}</Text>
+            <Text style={SpadesStyles.playerNameTxt}>{data.player2}</Text>
           </View>
           <Text style={SpadesStyles.score}>Score: {team1Score}</Text>
         </View>
         <View style={SpadesStyles.spadesTeamConatiner}>
           <Text style={SpadesStyles.TeamName}>{data.team2Name}</Text>
-          <Text>{data.player3}</Text>
-          <Text>{data.player4}</Text>
+          <View style={SpadesStyles.spadesPlayerName}>
+            <Text style={SpadesStyles.playerNameTxt}>{data.player3}</Text>
+            <Text style={SpadesStyles.playerNameTxt}>{data.player4}</Text>
+          </View>
           <Text style={SpadesStyles.score}>Score: {team2Score}</Text>
         </View>
 

@@ -11,6 +11,7 @@ export const BidModalSyles = StyleSheet.create({
     textAlign: "center",
     fontSize: getFontSize(35),
     marginBottom: "3%",
+    marginTop: "6%",
   },
   nullCheckbox: {
     marginTop: 16,

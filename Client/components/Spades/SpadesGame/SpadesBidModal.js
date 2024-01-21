@@ -335,7 +335,6 @@ export function SpadesBidModal(props) {
           <Text style={BidModalSyles.scoreText}>Score Round</Text>
         </Pressable>
       </View>
-      <View></View>
     </Modal>
   );
 }
