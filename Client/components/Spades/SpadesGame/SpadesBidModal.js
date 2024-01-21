@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Counter } from "../SpadesCounter/Counter";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { BidModalSyles } from "./SpadesBidModalStyles";
 
 export function SpadesBidModal(props) {
   const saveBid = async () => {
@@ -24,7 +25,6 @@ export function SpadesBidModal(props) {
 
   const madeBid = async (value) => {
     if (value === "team1") {
-      console.log("team1 made");
       let add1Score = bid.team1bid * 10 + props.team1Score;
       if (roundScore.team1MadeNull) {
         add1Score = 100 + add1Score;
@@ -34,7 +34,6 @@ export function SpadesBidModal(props) {
       console.log(add1Score);
       props.update1Score(add1Score);
     } else {
-      console.log("team 2 made");
       let add2Score = bid.team2bid * 10 + props.team2Score;
       if (roundScore.team2MadeNull) {
         add2Score = 100 + add2Score;
@@ -47,9 +46,7 @@ export function SpadesBidModal(props) {
   };
 
   const lostBid = async (value) => {
-    console.log(2);
     if (value === "team1") {
-      console.log("team 1 lost");
       let lost1Score = props.team1Score - bid.team1bid * 10;
       if (roundScore.team1MadeNull) {
         lost1Score = 100 + lost1Score;
@@ -59,7 +56,6 @@ export function SpadesBidModal(props) {
       console.log(lost1Score);
       props.update1Score(lost1Score);
     } else {
-      console.log("team 2 lost");
       let lost2Score = props.team2Score - bid.team2bid * 10;
       if (roundScore.team2MadeNull) {
         lost2Score = 100 + lost2Score;
@@ -95,8 +91,14 @@ export function SpadesBidModal(props) {
   return (
     <Modal {...props} animationType="slide" presentationStyle="pageSheet">
       <View>
-        <MaterialIcons name="close" size={50} onPress={props.onHide} />
+        <MaterialIcons
+          name="close"
+          size={50}
+          onPress={props.onHide}
+          style={BidModalSyles.closeIcon}
+        />
         <>
+          <Text style={BidModalSyles.teamName}>{props.team1Name}</Text>
           <Counter teamBid={bid.team1bid} onUpdate={update1Bid} />
           <BouncyCheckbox
             style={{ marginTop: 16 }}
@@ -180,6 +182,7 @@ export function SpadesBidModal(props) {
             <></>
           )}
         </>
+        <Text style={BidModalSyles.teamName}>{props.team2Name}</Text>
         <Counter teamBid={bid.team2bid} onUpdate={update2Bid} />
         <BouncyCheckbox
           style={{ marginTop: 16 }}

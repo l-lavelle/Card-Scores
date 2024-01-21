@@ -83,6 +83,8 @@ export function SpadesGame() {
           team2Score={team2Score}
           update1Score={updateScore1}
           update2Score={updateScore2}
+          team1Name={data.team1Name}
+          team2Name={data.team2Name}
           show={modalOpen}
           onHide={() => setModalOpen(false)}
           visible={modalOpen}
