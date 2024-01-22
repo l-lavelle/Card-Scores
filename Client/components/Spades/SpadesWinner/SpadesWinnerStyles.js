@@ -9,10 +9,21 @@ export const SpadesWinStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  teamWonText: {
-    fontSize: getFontSize(30),
-    textAlign: "center",
+  backgrdImg: {
+    width: "100%",
+    height: 400,
+    justifyContent: "center",
+    alignItems: "center",
   },
+
+  teamWonText: {
+    fontSize: getFontSize(45),
+    textAlign: "center",
+    backgroundColor: "white",
+    padding: 10,
+    opacity: 0.8,
+  },
+
   rerouteBtn: {
     margin: "5%",
     alignItems: "center",

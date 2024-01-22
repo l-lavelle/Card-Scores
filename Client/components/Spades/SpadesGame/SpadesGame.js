@@ -74,24 +74,27 @@ export function SpadesGame({ navigation }) {
         </TouchableOpacity>
         <ImageBackground
           style={SpadesStyles.backImg}
+          borderRadius={25}
           source={require("../../../assets/versus.jpg")}
         >
-          <View style={SpadesStyles.spadesTeamConatiner}>
-            <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
-            <View style={SpadesStyles.spadesPlayerName}>
-              <Text style={SpadesStyles.playerNameTxt}>{data.player1}</Text>
-              <Text style={SpadesStyles.playerNameTxt}>{data.player2}</Text>
+          <View style={SpadesStyles.scoreContainer}>
+            <View style={SpadesStyles.spadesTeamConatiner}>
+              <Text style={SpadesStyles.TeamName}>{data.team1Name}</Text>
+              <View style={SpadesStyles.spadesPlayerName}>
+                <Text style={SpadesStyles.playerNameTxt}>{data.player1}</Text>
+                <Text style={SpadesStyles.playerNameTxt}>{data.player2}</Text>
+              </View>
+              <Text style={SpadesStyles.score}>Score: {team1Score}</Text>
             </View>
-            <Text style={SpadesStyles.score}>Score: {team1Score}</Text>
-          </View>
 
-          <View style={SpadesStyles.spadesTeamConatiner}>
-            <Text style={SpadesStyles.TeamName}>{data.team2Name}</Text>
-            <View style={SpadesStyles.spadesPlayerName}>
-              <Text style={SpadesStyles.playerNameTxt}>{data.player3}</Text>
-              <Text style={SpadesStyles.playerNameTxt}>{data.player4}</Text>
+            <View style={SpadesStyles.spadesTeamConatiner}>
+              <Text style={SpadesStyles.TeamName}>{data.team2Name}</Text>
+              <View style={SpadesStyles.spadesPlayerName}>
+                <Text style={SpadesStyles.playerNameTxt}>{data.player3}</Text>
+                <Text style={SpadesStyles.playerNameTxt}>{data.player4}</Text>
+              </View>
+              <Text style={SpadesStyles.score}>Score: {team2Score}</Text>
             </View>
-            <Text style={SpadesStyles.score}>Score: {team2Score}</Text>
           </View>
         </ImageBackground>
         <Pressable style={SpadesStyles.bidBtn} onPress={toggleModal}>

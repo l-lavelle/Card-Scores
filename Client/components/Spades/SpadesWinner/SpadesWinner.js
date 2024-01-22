@@ -1,19 +1,38 @@
-// Navigation button not working
-import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, Text, Pressable, ImageBackground } from "react-native";
 import { SpadesWinStyles } from "./SpadesWinnerStyles";
 import { useNavigation } from "@react-navigation/native";
+import LottieView from "lottie-react-native";
 
 export function SpadesWinner(props) {
+  const animation = useRef(null);
+
   const navigation = useNavigation();
+
+  useEffect(() => {
+    animation.current?.reset();
+    animation.current?.play();
+  }, []);
 
   return (
     <>
+      <LottieView
+        ref={animation}
+        source={require("../../../assets/confetti.json")}
+        autoPlay={true}
+        loop={true}
+      />
       <View style={SpadesWinStyles.winnerContainer}>
-        <Text style={SpadesWinStyles.teamWonText}>
-          {props.route.params.team} Won!
-        </Text>
+        <ImageBackground
+          style={SpadesWinStyles.backgrdImg}
+          source={require("../../../assets/winner.png")}
+        >
+          <Text style={SpadesWinStyles.teamWonText}>Winner:</Text>
+          <Text style={SpadesWinStyles.teamWonText}>
+            {props.route.params.team}
+          </Text>
+        </ImageBackground>
+
         <Pressable
           style={SpadesWinStyles.rerouteBtn}
           onPress={() => navigation.navigate("Spades Players")}

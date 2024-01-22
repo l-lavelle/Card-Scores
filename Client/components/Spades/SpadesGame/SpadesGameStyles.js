@@ -10,8 +10,6 @@ export const SpadesStyles = StyleSheet.create({
   },
   backImg: {
     flex: 1,
-    justifyContent: "center",
-    borderRadius: 25,
   },
   spadesTitle: {
     fontSize: getFontSize(55),
@@ -28,15 +26,21 @@ export const SpadesStyles = StyleSheet.create({
   },
   TeamName: {
     fontSize: getFontSize(50),
-    marginBottom: "5%",
-    marginTop: "8%",
+    marginTop: "2%",
+    textDecorationLine: "underline",
+  },
+  scoreContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+    borderWidth: 3,
+    borderRadius: 25,
   },
   spadesTeamConatiner: {
     height: 150,
     alignItems: "center",
     borderRadius: 25,
     backgroundColor: "white",
-    opacity: 0.5,
+    opacity: 0.8,
   },
   spadesPlayerName: {
     flexDirection: "row",
@@ -65,6 +69,6 @@ export const SpadesStyles = StyleSheet.create({
   },
   score: {
     fontSize: getFontSize(25),
-    marginTop: "5%",
+    marginTop: "2%",
   },
 });
