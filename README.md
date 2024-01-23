@@ -32,7 +32,7 @@ I was unable to build the app to put on my phone since I have windows OS on my l
 
 |                          Bids                           |                  Spades Scoring Page                  |
 | :-----------------------------------------------------: | :---------------------------------------------------: |
-| <img src='Github-Images/spadesScore.jpeg' height='500'> | <img src='Github-Images/SpadesBid.jpeg' height='500'> |
+| <img src='Github-Images/spadesScore.jpeg' height='500'> | <img src='Github-Images/spadesBid.jpeg' height='500'> |
 
 |                       Winner Page                        |
 | :------------------------------------------------------: |
