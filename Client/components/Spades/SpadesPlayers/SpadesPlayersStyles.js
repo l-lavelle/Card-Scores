@@ -54,9 +54,9 @@ export const PlayersStyles = StyleSheet.create({
     width: "100%",
     height: 20,
     fontSize: 16,
-    border: "none",
-    background: "none",
-    outline: "none",
+    // border: "none",
+    // background: "none",
+    // outline: "none",
     marginTop: "8%",
   },
   txtFieldLabel: {

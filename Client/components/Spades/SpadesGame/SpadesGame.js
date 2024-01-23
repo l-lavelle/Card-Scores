@@ -5,7 +5,6 @@ import {
   Text,
   TouchableOpacity,
   Pressable,
-  Image,
   ImageBackground,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
