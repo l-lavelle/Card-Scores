@@ -30,7 +30,7 @@ I was unable to build the app to put on my phone since I have windows OS on my l
 | :----------------------------------------------------: | :-----------------------------------------------: |
 | <img src='Github-Images/homeScreen.jpeg' height='500'> | <img src='Github-Images/teams.jpeg' height='500'> |
 
-|                          Bids                           |                  Spades Scoring Page                  |
+|                   Spades Scoring Page                   |                         Bids                          |
 | :-----------------------------------------------------: | :---------------------------------------------------: |
 | <img src='Github-Images/spadesScore.jpeg' height='500'> | <img src='Github-Images/spadesBid.jpeg' height='500'> |
 
