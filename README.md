@@ -26,13 +26,17 @@ Note: your laptop and phone will need to be on the same wifi to work. Currently 
 
 I was unable to build the app to put on my phone since I have windows OS on my laptop and iOS for my mobile device but there is lots of documentation on creating an app if your cirumstances are different.
 
-|                      Home Screen                       |                   Create Teams                    |                         Bids                          |
-| :----------------------------------------------------: | :-----------------------------------------------: | :---------------------------------------------------: |
-| <img src='Github-Images/homeScreen.jpeg' height='500'> | <img src='Github-Images/teams.jpeg' height='500'> | <img src='Github-Images/SpadesBid.jpeg' height='500'> |
+|                      Home Screen                       |                   Create Teams                    |
+| :----------------------------------------------------: | :-----------------------------------------------: |
+| <img src='Github-Images/homeScreen.jpeg' height='500'> | <img src='Github-Images/teams.jpeg' height='500'> |
 
-|                   Spades Scoring Page                   |                      Winner Screen                       |
-| :-----------------------------------------------------: | :------------------------------------------------------: |
-| <img src='Github-Images/spadesScore.jpeg' height='500'> | <img src='Github-Images/winnerScreen.jpeg' height='500'> |
+|                          Bids                           |                  Spades Scoring Page                  |
+| :-----------------------------------------------------: | :---------------------------------------------------: |
+| <img src='Github-Images/spadesScore.jpeg' height='500'> | <img src='Github-Images/SpadesBid.jpeg' height='500'> |
+
+|                       Winner Page                        |
+| :------------------------------------------------------: |
+| <img src='Github-Images/winnerScreen.jpeg' height='500'> |
 
 ## Usage
 
